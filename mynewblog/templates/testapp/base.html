@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+{%load testapp_tags%}
+{%load staticfiles%}
+<html lang="en" dir="ltr">
+  <head>
+
+
+    <meta charset="utf-8">
+
+
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+      <link rel="stylesheet" href="{%static 'css/show.css' %}">
+    <title>{%block title_block%}{%endblock%}</title>
+  <style>
+   .content{
+  width: 60%;
+  float: left;
+  padding: 0 0 0 30px;
+  background: blue;
+  color:white;
+  height: 100%;
+
+}
+  .sidebar{
+  width: 40%;
+  float: left;
+  padding: 10px;
+  background:yellow;
+  height: 100%;
+
+}
+h1{
+  text-align: center;
+  border-bottom: 1px solid white;
+  padding-bottom: 10px;
+
+
+}
+body{
+  background: blue;
+}
+#date{
+  color:yellow;
+  font-size: 15px;
+  font-style: italic;
+}
+a{
+  color: white;
+
+}
+
+.scomment{
+
+  background:green;
+}
+#ch{
+  color:yellow;
+  font-style: italic;
+}
+input[type="text"]{
+  background: yellow;
+  color:black;
+}
+input[type="email"]{
+  background: yellow;
+  color:black;
+}
+input[type=Text]{
+  background: yellow;
+  color:black;
+}
+#pn{
+  font-size: 40px;
+  color: blue;
+  font-weight: bold;
+}
+.sidelink1{
+  color:blue;
+  font-size: 17px;
+}
+
+</style>
+
+  </head>
+  <body>
+  <div class="content">
+    {%block content%}{%endblock%}
+
+  </div>
+  <div class="sidebar">
+    <h2>bharath sideblog</h2>
+    <p>total number of posts upto today:<span id='pn'>{%total_posts%}</span></p>
+    <h3>latest posts:</h3>{%show_latest_posts 100%}
+    <h3>most commented posts</h3>
+    {%get_most_commented_posts as most_commented_posts%}
+    <ul>
+      {%for post in most_commented_posts%}
+      <li id="sidelink">  <a href="{{post.get_absolute_url}}"class="sidelink1"> {{post.title}}  </a>
+        {%endfor%}
+    </ul>
+    {%block sidebar%}{%endblock%}
+  </div>
+  </body>
+</html>
